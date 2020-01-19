@@ -6,20 +6,25 @@ namespace App\Http\Controllers\Api;
 use DatePeriod;
 use DateTime;
 use DateInterval;
+use Illuminate\Http\Request;
 
 class GrapthDataController
 {
-    public function populateData()
+    public function getData(Request $request)
     {
-        return response()->json(['data' => ['45','45','45','345','34','3','4']], 200);
-    }
+        $monthsFromNow = $request->get('monthsFromNow');
 
-    public function dateRange($monthsFromNow)
-    {
         return response()->json(
-            ['data'=> $this->populateDateRange($monthsFromNow)
+            [
+                'grapthData' => $this->populateData(),
+                'dates'=> $this->populateDateRange($monthsFromNow)
             ], 200
         );
+    }
+
+    private function populateData()
+    {
+        return ['45','45','45','345','34','3','4'];
     }
 
     private function populateDateRange($monthsFromNow)

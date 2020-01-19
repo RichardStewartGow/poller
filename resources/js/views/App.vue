@@ -9,20 +9,16 @@
     export default {
         name: "App",
         methods: {
-            getData: async function() {
-               let response = await  axios.get('/api/data').then(response => response.data).catch();
+            load: async function() {
+                let response = await  axios.post('/api/data', {'monthsFromNow': 24}).then(response => response.data).catch();
                 this.series = [
                     {
-                        data: response.data
+                        data: response.grapthData
                     }
                 ]
-            },
-            getDates: async function() {
-                let response = await axios.get('/api/dateRange/24').then(response => response.data).catch();
-                console.log(response);
                 this.chartOptions = {
                     xaxis: {
-                        categories: response.data
+                        categories: response.dates
                     }
                 }
             }
@@ -89,8 +85,7 @@
             }
         },
         mounted: function() {
-            this.getDates();
-            this.getData();
+            this.load()
         }
 }
 </script>
