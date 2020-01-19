@@ -1,7 +1,7 @@
 <template>
     <div class="width">
             <apexchart type="line" class="width" :options="chartOptions" :series="series"></apexchart>
-            <Selector></Selector>
+            <Selector @updateFromSelector="updateFromSelector"></Selector>
     </div>
 </template>
 
@@ -20,8 +20,15 @@
                 let response = await axios.post('/api/data', params).then(response => response.data).catch();
                 return response;
             },
-            load: async function() {
-                let response = await this.ajax({'monthsFromNow': 24});
+            updateFromSelector: function(selected) {
+                this.load({'monthsFromNow': selected})
+            },
+            load: async function(monthsFromNow = false) {
+                if (!monthsFromNow) {
+                    monthsFromNow = {'monthsFromNow': 24};
+                }
+
+                let response = await this.ajax(monthsFromNow);
                 this.series = [
                     {
                         data: response.grapthData
