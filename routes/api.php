@@ -16,3 +16,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/data', 'Api\GrapthDataController@populateData');
+Route::get('/dateRange', 'Api\GrapthDataController@dateRange');
