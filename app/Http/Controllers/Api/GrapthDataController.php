@@ -8,7 +8,7 @@ class GrapthDataController
 {
     public function populateData()
     {
-        return response()->json(['45','45','45','345','34','3','4']);
+        return response()->json(['data' => ['45','45','45','345','34','3','4']], 200);
     }
 
     public function dateRange()
@@ -22,7 +22,7 @@ class GrapthDataController
                 '12/11/2000', '1/11/2001', '2/11/2001', '3/11/2001',
                 '4/11/2001', '5/11/2001', '6/11/2001'
                 ]
-            ]
+            ], 200
         );
     }
 }
