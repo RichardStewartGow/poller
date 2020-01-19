@@ -16,19 +16,17 @@
             Selector
         },
         methods: {
-            ajax: async function(params) {
-                let response = await axios.post('/api/data', params).then(response => response.data).catch();
+            ajax: async function() {
+                let response = await axios.post('/api/data', this.currentParams).then(response => response.data).catch();
                 return response;
             },
             updateFromSelector: function(selected) {
-                this.load({'monthsFromNow': selected})
+                console.log(selected.monthsFromNow);
+                this.currentParams.monthsFromNow = selected.monthsFromNow
+                this.load()
             },
-            load: async function(monthsFromNow = false) {
-                if (!monthsFromNow) {
-                    monthsFromNow = {'monthsFromNow': 24};
-                }
-
-                let response = await this.ajax(monthsFromNow);
+            load: async function() {
+                let response = await this.ajax();
                 this.series = [
                     {
                         data: response.grapthData
@@ -43,11 +41,13 @@
         },
         data: function() {
             return {
+                currentParams: {
+                    monthsFromNow: '24',
+                },
                 series: [{
                     name: 'Test1',
                     data: []
                 }],
-
                 chartOptions: {
                     chart: {
                         type: 'line'

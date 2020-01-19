@@ -1,7 +1,7 @@
 <template>
     <div>
         <button v-on:click="emitSelected">test</button>
-        <select name="monthsFromNow" id="monthsFromNow" @change="currentValue = $event.target.value" v-model="monthsFromNow">
+        <select name="monthsFromNow" id="monthsFromNow" @change="currentValueMonths = $event.target.value" v-model="currentParams.monthsFromNow">
             <option v-for="item in sortOptions" :value="item.value">{{item.text}}</option>
         </select>
     </div>
@@ -12,17 +12,19 @@
         name: "Selector",
         methods: {
            emitSelected: function () {
-               this.$emit('updateFromSelector', this.monthsFromNow)
+               this.$emit('updateFromSelector', this.currentParams)
            }
         },
         watch: {
-            currentValue(selected) {
-                this.selectedValue = selected
+            currentValueMonths(selected) {
+                this.currentParams.monthsFromNow = selected
             }
         },
         data : function () {
             return {
-                monthsFromNow: '24',
+                currentParams: {
+                    monthsFromNow: '',
+                },
                 sortType: 'sort',
                 sortOptions: [
                     { text: '2', value: '2' },
