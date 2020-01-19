@@ -1,16 +1,27 @@
 <template>
-    <apexchart type="line" style="width: 100%" :options="chartOptions" :series="series"></apexchart>
-
+    <div class="width">
+            <apexchart type="line" class="width" :options="chartOptions" :series="series"></apexchart>
+            <Selector></Selector>
+    </div>
 </template>
 
 <script>
     import axios from "axios";
 
+    import Selector from './Selector'
+
     export default {
         name: "App",
+        components: {
+            Selector
+        },
         methods: {
+            ajax: async function(params) {
+                let response = await axios.post('/api/data', params).then(response => response.data).catch();
+                return response;
+            },
             load: async function() {
-                let response = await  axios.post('/api/data', {'monthsFromNow': 24}).then(response => response.data).catch();
+                let response = await this.ajax({'monthsFromNow': 24});
                 this.series = [
                     {
                         data: response.grapthData
@@ -90,5 +101,7 @@
 </script>
 
 <style scoped>
-
+    .width {
+        width: 100%
+    }
 </style>

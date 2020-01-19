@@ -24,7 +24,7 @@ class GrapthDataController
 
     private function populateData()
     {
-        return ['45','45','45','345','34','3','4'];
+        return ['4','4','4','4','34','3','4'];
     }
 
     private function populateDateRange($monthsFromNow)
