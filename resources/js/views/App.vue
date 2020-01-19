@@ -10,8 +10,7 @@
         name: "App",
         methods: {
             getData: async function() {
-               let response = await axios.get('/api/data').then(response => response.data).catch();
-               console.log(response);
+               let response = await  axios.get('/api/data').then(response => response.data).catch();
                 this.series = [
                     {
                         data: response.data
@@ -19,17 +18,11 @@
                 ]
             },
             getDates: async function() {
-                let response = await axios.get('/api/dateRange');
+                let response = await axios.get('/api/dateRange').then(response => response.data).catch();
                 console.log(response);
                 this.chartOptions = {
                     xaxis: {
-                        categories: [
-                            '1/11/2000', '2/11/2000', '3/11/2000',
-                            '4/11/2000', '5/11/2000', '6/11/2000', '7/11/2000',
-                            '8/11/2000', '9/11/2000', '10/11/2000', '11/11/2000',
-                            '12/11/2000', '1/11/2001', '2/11/2001', '3/11/2001',
-                            '4/11/2001', '5/11/2001', '6/11/2001'
-                        ]
+                        categories: response.data
                     }
                 }
             }

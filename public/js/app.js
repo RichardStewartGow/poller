@@ -2001,16 +2001,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/data');
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/data').then(function (response) {
+                  return response.data;
+                })["catch"]();
 
               case 2:
                 response = _context.sent;
-                console.log(response);
                 this.series = [{
                   data: response.data
                 }];
 
-              case 5:
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -2034,14 +2035,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/dateRange');
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/dateRange').then(function (response) {
+                  return response.data;
+                })["catch"]();
 
               case 2:
                 response = _context2.sent;
                 console.log(response);
                 this.chartOptions = {
                   xaxis: {
-                    categories: ['1/11/2000', '2/11/2000', '3/11/2000', '4/11/2000', '5/11/2000', '6/11/2000', '7/11/2000', '8/11/2000', '9/11/2000', '10/11/2000', '11/11/2000', '12/11/2000', '1/11/2001', '2/11/2001', '3/11/2001', '4/11/2001', '5/11/2001', '6/11/2001']
+                    categories: response.data
                   }
                 };
 
