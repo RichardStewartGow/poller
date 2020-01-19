@@ -1,5 +1,5 @@
 <template>
-    <apexchart type="line" height="350" :options="chartOptions" :series="series"></apexchart>
+    <apexchart id="container" type="line" height="350" :options="chartOptions" :series="series"></apexchart>
 
 </template>
 
@@ -32,7 +32,6 @@
 
                 chartOptions: {
                     chart: {
-                        height: 350,
                         type: 'line',
                     },
                     noData: {
@@ -91,5 +90,9 @@
 </script>
 
 <style scoped>
-
+    #container {
+        height:100%;
+        width:100%;
+        position:absolute;
+    }
 </style>
