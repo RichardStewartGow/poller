@@ -1,4 +1,4 @@
 @extends('layouts.default')
 @section('content')
-    Index page
+   <app></app>
 @stop
