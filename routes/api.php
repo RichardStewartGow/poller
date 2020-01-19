@@ -18,4 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/data', 'Api\GrapthDataController@populateData');
-Route::get('/dateRange', 'Api\GrapthDataController@dateRange');
+Route::get('/dateRange/{months}', 'Api\GrapthDataController@dateRange');

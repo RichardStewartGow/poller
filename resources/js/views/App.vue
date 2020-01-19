@@ -18,7 +18,7 @@
                 ]
             },
             getDates: async function() {
-                let response = await axios.get('/api/dateRange').then(response => response.data).catch();
+                let response = await axios.get('/api/dateRange/24').then(response => response.data).catch();
                 console.log(response);
                 this.chartOptions = {
                     xaxis: {
