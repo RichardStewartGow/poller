@@ -1,0 +1,7 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/php:7.4.1-fpm-buster #https://github.com/phpdaily/php/blob/master/7.4-dev/buster/fpm/Dockerfile
+    steps:
+      - checkout
