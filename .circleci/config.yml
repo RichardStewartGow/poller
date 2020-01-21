@@ -13,6 +13,7 @@ jobs:
     steps:
       - checkout
       - run: sudo composer self-update
+      - run: sudo docker-php-ext-install pdo_mysql
       - run: composer install --no-dev
       - run: npm install #@todo re-examine
       - run: npm install vue bootstrap-vue bootstrap
