@@ -1,7 +1,7 @@
 <template>
     <div class="width">
             <apexchart type="line" class="width" :options="chartOptions" :series="series"></apexchart>
-            <Selector @updateFromSelector="updateFromSelector"></Selector>
+            <Selector :currentParams=this.currentParams @updateFromSelector="updateFromSelector"></Selector>
     </div>
 </template>
 
@@ -21,7 +21,6 @@
                 return response;
             },
             updateFromSelector: function(selected) {
-                console.log(selected.monthsFromNow);
                 this.currentParams.monthsFromNow = selected.monthsFromNow
                 this.load()
             },
