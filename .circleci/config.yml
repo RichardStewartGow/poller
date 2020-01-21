@@ -6,6 +6,8 @@ jobs:
     working_directory: ~/poller
     steps:
       - checkout
+      - run: sudo apt-get install npm
       - run: sudo composer self-update
       - run: composer install --no-dev
+      - run: npm install
       - run: npm run prod
