@@ -9,4 +9,5 @@ jobs:
       - run: sudo composer self-update
       - run: composer install --no-dev
       - run: npm install
-      - run: npm run dev
+      - run: npm install vue bootstrap-vue bootstrap
+      - run: npm run prod
