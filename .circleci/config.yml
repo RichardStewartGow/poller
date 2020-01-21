@@ -3,6 +3,12 @@ jobs:
   build:
     docker:
       - image: circleci/php:7.3-stretch-node-browsers
+      - image: circleci/mysql:latest
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD=true
+          MYSQL_ROOT_HOST="%"
+          MYSQL_USER=circleci
+          MYSQL_DATABASE=poller
     working_directory: ~/poller
     steps:
       - checkout
@@ -12,16 +18,6 @@ jobs:
       - run: npm install vue bootstrap-vue bootstrap
       - run: npm run prod
       - run: mv .env.circleci .env
-tests:
-  build:
-    docker:
-      - imagine: circleci/mysql:latest
-        environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD=true
-          MYSQL_ROOT_HOST="%"
-          MYSQL_USER=circleci
-          MYSQL_DATABASE=poller
-    working_directory: ~/poller
-    steps:
       - run: php artisan migrate --force
       - run: php artisan db:seed --force
+
