@@ -20,7 +20,9 @@
                 this.currentParams.monthsFromNow = selected
             }
         },
-        props: ['currentParams'],
+        props: {
+            currentParams: Object
+        },
         data : function () {
             return {
                 sortType: 'sort',
