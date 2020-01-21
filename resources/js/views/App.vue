@@ -25,7 +25,7 @@
                 this.load()
             },
             load: async function() {
-                let response = await this.ajax();
+                let response = await this.ajax();//@todo fix - may look redundant but bodge to make apexcharts wait for now
                 this.series = [
                     {
                         data: response.grapthData
